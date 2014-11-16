@@ -11,7 +11,9 @@
 
 ### get this plugin
 
-    % git clone https://github.com/atarukodaka/jekyll-amazon-plugin.git
+by git-submodule
+
+    % git submodule https://github.com/atarukodaka/jekyll-amazon-plugin.git
 
 or
 

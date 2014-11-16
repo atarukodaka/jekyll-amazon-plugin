@@ -27,9 +27,9 @@ module Jekyll
 </div>)
     }
     def initialize(name, params, token)
-      params.strip =~ /^(\w+):(\w+)$/
+      params.strip =~ /^(\w+):?(\w+)$/
       @asin = $1
-      @template_type = $2
+      @template_type = $2 || 'title'
     end
 
     def render(context)

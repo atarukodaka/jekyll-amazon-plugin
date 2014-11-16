@@ -5,7 +5,7 @@ require 'amazon/ecs'
 require 'erb'
 require 'i18n'
 
-$debug = false
+$debug = true
 
 ################################################################
 module Jekyll
@@ -16,14 +16,45 @@ module Jekyll
       title: %(<span><a href="<%= data[:detail_url] %>" target="_blank"><%= data[:title] %></a></span>),
       detail:
 %(
+<style>
+.amazon_item {
+  padding: 10px;
+  border: 1px solid #E3E3E3;
+  overflow : hidden;
+  background-color: rgba(246, 246, 246, 0.5);
+  margin-bottom: 1em;
+}
+
+.amazon_item img {
+    width: 120px;
+    vertical-align: top;
+    border: 0px none;
+    padding: 1px;
+    float: left
+}
+
+.amazon_item  .item_detail{
+    padding: 1em;
+    float: left;
+    margin-left: 5px;
+  }
+
+.amazon_item  &:after {
+    clear: both;
+  }
+}
+</style>
+
 <div class="amazon_item">
 <a href="<%= data[:detail_url] %>" target="_blank"><img src="<%= data[:image_medium] %>"></a>
-<a href="<%= data[:detail_url] %>" target="_blank"><%= data[:title] %></a><br>
+<a href="<%= data[:detail_url] %>" target="_blank"><%= data[:title] %></a><br/>
+<div class="item_detail">
 <% labels.keys.each do |t| %>
  <% if data[t] != "" %>
-  <%= labels[t] %>: <%= data[t]%> <br>
+  <%= labels[t] %>: <%= data[t]%> <br/>
  <% end %>
 <% end %>
+</div>
 </div>)
     }
     def initialize(name, params, token)
@@ -43,7 +74,7 @@ module Jekyll
         cache = Jekyll::AmazonCache.new(conf['cache_dir'])
         data = cache.get(@asin)
       end
-      if data.nil?
+      if data.nil?  # if no cache available
         Amazon::Ecs.options= {
           associate_tag: conf['associate_tag'],
           AWS_access_key_id: conf['access_key_id'],
@@ -52,7 +83,7 @@ module Jekyll
           response_group: 'Images,ItemAttributes'
         }
         data = item_lookup(@asin)
-        cache.put(@asin, data) if use_cache
+        cache.put(@asin, data) if use_cache  # save to cache
       end
 
       # template

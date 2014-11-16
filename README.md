@@ -21,6 +21,7 @@ or
 	% wget https://github.com/atarukodaka/jekyll-amazon-plugin/blob/master/amazon.rb
 
 ## How to use
+### Syntax
 in your post or page, put text like:
 
     {% amazon <asin>:<template> %}
@@ -74,8 +75,8 @@ hashes are available:
 
 ## TODO
 
-- tbd
 - docs
+- css
 
 ## Special Thanks to
 

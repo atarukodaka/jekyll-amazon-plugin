@@ -5,7 +5,7 @@ require 'amazon/ecs'
 require 'erb'
 require 'i18n'
 
-$debug = true
+$debug = false
 
 ################################################################
 module Jekyll

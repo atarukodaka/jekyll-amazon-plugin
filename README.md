@@ -4,20 +4,22 @@
 ### get gems packages
 
     % vi Gemfile
-    + gem 'amazon-ecs'
-    + gem 'i18n'
+    ...
+	gem 'amazon-ecs'
+    gem 'i18n'
     % bundle install --path /vendor/bundle
 
-### get amazon.rb
+### get this plugin
 
     % git clone https://github.com/atarukodaka/jekyll-amazon-plugin.git
 
 or
 
-    % cd plugin
+    % cd _plugins
 	% wget https://github.com/atarukodaka/jekyll-amazon-plugin/blob/master/amazon.rb
 
 ## How to use
+in your post or page, put text like:
 
     {% amazon <asin>:<template> %}
 
@@ -42,6 +44,7 @@ amazon:
   cache_dir: _caches/amazon
 ```
 
+## Customization
 ### lables
 
     % vi locale/en.yml
@@ -50,7 +53,7 @@ amazon:
 	  date: 'date'
 	  publisher: 'publisher'
 
-Also, you can make customized-template as follows:
+### template
 
 ```
 % vi _config.yml
@@ -62,11 +65,10 @@ amazon:
       put your template here on erb format
 ```
 
-hashes available:
+hashes are available:
 
-- data    :title, :author, :publisher, ...
+- data    :title, :author, :publisher, :date
 - labels  :author, :publisher, :date  via i18n-locale
-
 
 ## TODO
 

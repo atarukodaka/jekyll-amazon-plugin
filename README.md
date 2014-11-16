@@ -13,7 +13,7 @@
 
 by git-submodule
 
-    % git submodule https://github.com/atarukodaka/jekyll-amazon-plugin.git
+    % git submodule add https://github.com/atarukodaka/jekyll-amazon-plugin.git _plugins/amazon
 
 or
 
